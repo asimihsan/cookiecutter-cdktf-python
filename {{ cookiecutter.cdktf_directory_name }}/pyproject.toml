@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "{{ cookiecutter.cdktf_module_name }}"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+packages = [
+    { include = "{{ cookiecutter.cdktf_module_name }}", from = "src" },
+]
+
+[tool.poetry.scripts]
+main = "{{ cookiecutter.cdktf_module_name }}.main:main"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+cdktf = "^0.19.2"
+cdktf-cdktf-provider-aws = "^18.2.0"
+pydantic = "^2.5.3"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.4"
+black = "^23.12.1"
+pyright = "^1.1.344"
+
+[tool.black]
+line-length = 120
+target-version = ["py311"]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

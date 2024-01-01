@@ -1,0 +1,13 @@
+{
+  "project_name": "CDKTF Project",
+  "aws_region": "us-east-2",
+  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
+  "project_slug_hyphens": "{{ cookiecutter.project_name.lower().replace(' ', '-') }}",
+
+  "cdktf_directory_name": "cdktf-{{ cookiecutter.project_slug_hyphens }}",
+  "cdktf_module_name": "cdktf_{{ cookiecutter.project_slug_hyphens.replace('-', '_') }}",
+
+  "project_slug_title_case": "{{ cookiecutter.project_name.title().replace(' ', '') }}",
+  "project_id": "{{ uuid4() }}",
+  "project_short_description": "High level description of the project"
+}

@@ -1,0 +1,12 @@
+{
+  "language": "python",
+  "app": "poetry run main",
+  "projectId": "{{ cookiecutter.project_id }}",
+  "sendCrashReports": "false",
+  "terraformProviders": [],
+  "terraformModules": [],
+  "codeMakerOutput": "imports",
+  "context": {
+
+  }
+}

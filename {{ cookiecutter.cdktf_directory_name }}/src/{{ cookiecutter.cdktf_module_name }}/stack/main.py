@@ -1,8 +1,8 @@
 from cdktf_cdktf_provider_aws.s3_bucket import S3Bucket
 from constructs import Construct
 
-from cdktf_python_empty.construct.lambda_construct import LambdaConstruct, LambdaConstructProps
-from cdktf_python_empty.stack.base import BaseStackProps, BaseStack
+from {{ cookiecutter.cdktf_module_name }}.construct.lambda_construct import LambdaConstruct, LambdaConstructProps
+from {{ cookiecutter.cdktf_module_name }}.stack.base import BaseStackProps, BaseStack
 
 
 class MyStackProps(BaseStackProps):

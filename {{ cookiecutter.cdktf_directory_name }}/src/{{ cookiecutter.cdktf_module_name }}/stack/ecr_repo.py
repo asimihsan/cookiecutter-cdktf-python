@@ -2,7 +2,7 @@ from cdktf import TerraformOutput
 from cdktf_cdktf_provider_aws.ecr_repository import EcrRepository
 from constructs import Construct
 
-from cdktf_python_empty.stack.base import BaseStack, BaseStackProps
+from {{ cookiecutter.cdktf_module_name }}.stack.base import BaseStack, BaseStackProps
 
 
 class EcrRepositoryStackProps(BaseStackProps):

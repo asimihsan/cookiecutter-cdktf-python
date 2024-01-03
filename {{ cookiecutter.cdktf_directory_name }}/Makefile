@@ -24,8 +24,8 @@ build-lambda:
 
 .PHONY: push-lambda
 push-lambda:
-	./scripts/push-to-ecr.sh --image-name lambda-go --tag latest --region us-west-2
-	./scripts/push-to-ecr.sh --image-name lambda-python --tag latest --region us-west-2
+	./scripts/push-to-ecr.sh --image-name lambda-go --tag latest --region {{ cookiecutter.aws_region }}
+	./scripts/push-to-ecr.sh --image-name lambda-python --tag latest --region {{ cookiecutter.aws_region }}
 
 .PHONY: run-lambda-python
 run-lambda-python:

@@ -1,11 +1,11 @@
 import pytest
-from cdktf_python_empty.app_props import AppProps
+from {{ cookiecutter.cdktf_module_name }}.app_props import AppProps
 
 
 # Mock the get_aws_regions function to return a fixed set of regions for testing
 @pytest.fixture
 def mock_get_aws_regions(mocker):
-    mocker.patch('cdktf_python_empty.app_props.get_aws_regions', return_value={'us-east-1', 'us-west-2'})
+    mocker.patch('{{ cookiecutter.cdktf_module_name }}.app_props.get_aws_regions', return_value={'us-east-1', 'us-west-2'})
 
 
 # Test the creation of AppProps with valid data

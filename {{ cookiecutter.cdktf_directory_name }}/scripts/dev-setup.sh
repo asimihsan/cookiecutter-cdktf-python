@@ -24,8 +24,6 @@ install_pre_commit() {
     pre-commit install
 }
 
-install_poetry()
-
 install_pre_commit
 
 npm install --global cdktf-cli@latest

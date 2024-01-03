@@ -6,7 +6,7 @@ from cdktf_cdktf_provider_aws.lambda_function import LambdaFunction, LambdaFunct
 from cdktf_cdktf_provider_aws.lambda_function_url import LambdaFunctionUrl
 from constructs import Construct
 
-from cdktf_python_empty.stack.base import BaseConstructProps
+from {{ cookiecutter.cdktf_module_name }}.stack.base import BaseConstructProps
 
 
 class LambdaConstructProps(BaseConstructProps):

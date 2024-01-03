@@ -18,6 +18,8 @@ def run(args: list[str]) -> None:
 
 def main():
     run(["poetry", "install"])
+    run(["git", "init"])
+    run(["make", "dev-setup"])
 
 
 if __name__ == "__main__":

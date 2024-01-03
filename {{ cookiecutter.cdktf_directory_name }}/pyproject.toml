@@ -1,15 +1,15 @@
 [tool.poetry]
-name = "cdktf-python-empty"
+name = "{{ cookiecutter.project_name }}"
 version = "0.1.0"
 description = ""
 authors = ["Your Name <you@example.com>"]
 readme = "README.md"
 packages = [
-    { include = "cdktf_python_empty", from = "src" },
+    { include = "{{ cookiecutter.cdktf_module_name }}", from = "src" },
 ]
 
 [tool.poetry.scripts]
-main = "cdktf_python_empty.main:main"
+main = "{{ cookiecutter.cdktf_module_name }}.main:main"
 
 [tool.poetry.dependencies]
 python = "^3.11"

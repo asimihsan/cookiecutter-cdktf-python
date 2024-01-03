@@ -1,30 +1,29 @@
 [tool.poetry]
-name = "{{ cookiecutter.cdktf_module_name }}"
+name = "cdktf-python-empty"
 version = "0.1.0"
 description = ""
 authors = ["Your Name <you@example.com>"]
 readme = "README.md"
 packages = [
-    { include = "{{ cookiecutter.cdktf_module_name }}", from = "src" },
+    { include = "cdktf_python_empty", from = "src" },
 ]
 
 [tool.poetry.scripts]
-main = "{{ cookiecutter.cdktf_module_name }}.main:main"
+main = "cdktf_python_empty.main:main"
 
 [tool.poetry.dependencies]
 python = "^3.11"
 cdktf = "^0.19.2"
 cdktf-cdktf-provider-aws = "^18.2.0"
 pydantic = "^2.5.3"
+boto3 = "^1.34.11"
+
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.4"
 black = "^23.12.1"
 pyright = "^1.1.344"
-
-[tool.black]
-line-length = 120
-target-version = ["py311"]
+pytest-mock = "^3.12.0"
 
 [build-system]
 requires = ["poetry-core"]

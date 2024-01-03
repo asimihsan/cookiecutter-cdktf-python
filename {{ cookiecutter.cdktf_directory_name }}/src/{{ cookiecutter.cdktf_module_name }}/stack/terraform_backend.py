@@ -2,7 +2,7 @@ from typing import Any
 
 from cdktf import TerraformStack
 from cdktf_cdktf_provider_aws.dynamodb_table import DynamodbTable
-from cdktf_cdktf_provider_aws.provider import AwsProvider
+from cdktf_cdktf_provider_aws.provider import AwsProvider, AwsProviderDefaultTags
 from cdktf_cdktf_provider_aws.s3_bucket import S3Bucket
 from constructs import Construct
 from pydantic import BaseModel
@@ -11,7 +11,7 @@ from pydantic import BaseModel
 class TerraformBackendStackProps(BaseModel):
     project_name: str
     region: str
-    common_tags: list[dict[str, Any]]
+    common_tags: dict[str, Any]
 
 
 class TerraformBackendStack(TerraformStack):
@@ -21,9 +21,11 @@ class TerraformBackendStack(TerraformStack):
     def __init__(self, scope: Construct, id: str, props: TerraformBackendStackProps):
         super().__init__(scope, id)
 
-        AwsProvider(self, "aws", region=props.region, default_tags=props.common_tags)
+        AwsProvider(self, "aws",
+                    region=props.region,
+                    default_tags=[AwsProviderDefaultTags(tags=props.common_tags)])
 
-        self.lock_table_name = f"{props.project_name}-terraform-state-lock"
+        self.lock_table_name = f"{props.project_name}-terraform-state-lock-{props.region}"
         DynamodbTable(
             self,
             "terraform_state_lock",

@@ -2,16 +2,21 @@ from typing import Any
 
 from cdktf import S3Backend
 from cdktf import TerraformStack
-from cdktf_cdktf_provider_aws.provider import AwsProvider
+from cdktf_cdktf_provider_aws.provider import AwsProvider, AwsProviderDefaultTags
 from constructs import Construct
 from pydantic import BaseModel
+
+
+class BaseConstructProps(BaseModel):
+    region: str
+    common_tags: dict[str, Any]
 
 
 class BaseStackProps(BaseModel):
     region: str
     terraform_backend_bucket_name: str
     terraform_backend_lock_table_name: str
-    common_tags: list[dict[str, Any]]
+    common_tags: dict[str, Any]
 
 
 # Define a class for the base stack
@@ -20,7 +25,9 @@ class BaseStack(TerraformStack):
         super().__init__(scope, id)
 
         # Initialize the AWS provider
-        AwsProvider(self, "aws", region=props.region, default_tags=props.common_tags)
+        AwsProvider(self, "aws",
+                    region=props.region,
+                    default_tags=[AwsProviderDefaultTags(tags=props.common_tags)])
 
         # Configure the S3 backend for Terraform state
         S3Backend(

@@ -9,5 +9,5 @@ Install cookiecutter: https://cookiecutter.readthedocs.io/en/stable/installation
 Create a new project:
 
 ```bash
-cookiecutter gh:asimihsan/cookicutter-cdktf-python
+cookiecutter gh:asimihsan/cookiecutter-cdktf-python
 ```

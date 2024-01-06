@@ -76,7 +76,7 @@ There are two CDKTF stacks. The first is for the ECR repository, to which we pus
 make cdktf-terraform-ecr-repo-deploy
 ```
 
-In order to deploy the second stack, which contains AWS Lambda functions whose code are in container images, we
+To deploy the second stack, which contains AWS Lambda functions whose code are in container images, we
 need to push the initial image version before we can deploy the stack.
 
 ```shell

@@ -1,4 +1,4 @@
-# cdktf-python-empty
+# {{ cookiecutter.cdktf_directory_name }}
 
 ## Getting started
 
@@ -17,7 +17,7 @@ use [aws-vault](https://github.com/99designs/aws-vault). For example if you put 
 
 ```ini
 [profile retail-common]
-region = us-west-2
+region = {{ cookiecutter.aws_region }}
 mfa_serial = arn:aws:iam::012345678901:mfa/mfa-device
 
 [profile retail-admin]
@@ -25,7 +25,7 @@ include_profile = retail-common
 role_arn = arn:aws:iam::012345678901:role/Administrator
 
 [default]
-credential_process = aws-vault exec retail-admin --region us-west-2 --json
+credential_process = aws-vault exec retail-admin --region {{ cookiecutter.aws_region }} --json
 ```
 
 - The `default` -> `credential_process` will cause `aws-vault` to be used for all AWS CLI commands transparently.
@@ -36,7 +36,7 @@ If instead you use SSO (e.g. you log in using AWS Organizations), you can use th
 
 ```ini
 [profile retail-common]
-region = us-east-2
+region = {{ cookiecutter.aws_region }}
 sso_start_url = https://retail.awsapps.com/start
 
 [profile retail-admin]
@@ -45,12 +45,12 @@ sso_account_id = 012345678901
 sso_role_name = Administrator
 
 [default]
-credential_process = aws-vault exec retail-admin --region us-west-2 --json
+credential_process = aws-vault exec retail-admin --region {{ cookiecutter.aws_region }} --json
 ```
 
 For `sso_start_url` note that `region` must be the region of the SSO start URL, not the region of the account you are
-logging into. In this example, we are logging into the `retail` account, which is in `us-west-2`, but the SSO start URL
-is in `us-east-2`.
+logging into. In this example, we are logging into the `retail` account, which is in `{{ cookiecutter.aws_region }}`, but the SSO start URL
+is in `{{ cookiecutter.aws_region }}`.
 
 See https://github.com/99designs/aws-vault/blob/master/USAGE.md for detailed usage instructions.
 
@@ -106,7 +106,7 @@ make push-lambda-python
 Again, this just runs the following shell script that will let you push other images:
 
 ```shell
-./scripts/push-to-ecr.sh --image-name lambda-python --tag latest --region us-east-2
+./scripts/push-to-ecr.sh --image-name lambda-python --tag latest --region {{ cookiecutter.aws_region }}
 ```
 
 Then you can synthesize the main stack:
@@ -120,8 +120,8 @@ to have AWS credentials available, which we get using `aws-vault`, and we need t
 request, which `awscurl` does:
 
 ```shell
-aws-vault exec retail-admin --region us-east-2 -- \
+aws-vault exec retail-admin --region {{ cookiecutter.aws_region }} -- \
     awscurl --service lambda \
-        https://mkvoargijs5s3obx6cyodfridi0zqhtf.lambda-url.us-east-2.on.aws/ \
+        https://mkvoargijs5s3obx6cyodfridi0zqhtf.lambda-url.{{ cookiecutter.aws_region }}.on.aws/ \
         --data '{"name": "World"}'
 ```

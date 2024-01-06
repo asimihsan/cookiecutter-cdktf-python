@@ -1,3 +1,4 @@
+import os
 import subprocess
 import sys
 
@@ -21,6 +22,8 @@ def main():
     run(["git", "init"])
     run(["make", "dev-setup"])
 
+    cwd = os.getcwd()
+    print(f"Project is ready at {cwd}!")
 
 if __name__ == "__main__":
     main()

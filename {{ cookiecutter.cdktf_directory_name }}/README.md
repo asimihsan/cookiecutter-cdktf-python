@@ -77,15 +77,16 @@ make cdktf-terraform-ecr-repo-deploy
 ```
 
 To deploy the second stack, which contains AWS Lambda functions whose code are in container images, we
-need to push the initial image version before we can deploy the stack.
+need to push the initial images before we can deploy the stack.
 
 ```shell
-make build-lambda-python
+make build-lambda
 ```
 
 This Make command runs:
 
 ```shell
+./scripts/build-lambda.sh --lambda-folder lambda_go --image-name lambda-go:latest
 ./scripts/build-lambda.sh --lambda-folder lambda_python --image-name lambda-python:latest
 ```
 
@@ -97,15 +98,16 @@ Then you need to first get CDKTF outputs (to get the ECR repo URL):
 make cdktf-output
 ```
 
-Then you can push the Lambda image
+Then you can push the Lambda images
 
 ```shell
-make push-lambda-python
+make push-lambda
 ```
 
 Again, this just runs the following shell script that will let you push other images:
 
 ```shell
+./scripts/push-to-ecr.sh --image-name lambda-go --tag latest --region {{ cookiecutter.aws_region }}
 ./scripts/push-to-ecr.sh --image-name lambda-python --tag latest --region {{ cookiecutter.aws_region }}
 ```
 

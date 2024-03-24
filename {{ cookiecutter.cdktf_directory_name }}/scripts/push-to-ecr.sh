@@ -17,7 +17,7 @@ usage() {
 # Initialize variables with default values
 IMAGE_NAME="lambda-python"
 TAG="latest"
-REGION="us-west-2" # Default AWS region
+REGION="{{ cookiecutter.aws_region }}" # Default AWS region
 
 # Parse command-line arguments
 while [[ "$#" -gt 0 ]]; do

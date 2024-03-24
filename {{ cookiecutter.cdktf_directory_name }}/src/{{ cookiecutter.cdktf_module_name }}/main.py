@@ -15,7 +15,7 @@ def main():
     app = App()
     app_props = AppProps(
         project_name="{{ cookiecutter.project_slug }}",
-        region="us-west-2",
+        region="{{ cookiecutter.aws_region }}",
         common_tags={"custom_tag": "custom_value"},
     )
 

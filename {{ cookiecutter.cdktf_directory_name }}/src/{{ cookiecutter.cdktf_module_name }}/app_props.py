@@ -30,7 +30,7 @@ class AppProps(BaseModel):
     Usage:
         app_props = AppProps(
             project_name="myproject",
-            region="us-east-2",
+            region="{{ cookiecutter.aws_region }}",
             common_tags=[{"tags": {"project": "myproject"}}],
         )
 
@@ -68,6 +68,15 @@ class AppProps(BaseModel):
         self.common_tags = default_tags | self.common_tags
 
         return self
+    
+    @property
+    def project_name_hyphens(self) -> str:
+        """
+        Generate the project name with hyphens instead of underscores.
+
+        :return: The project name with hyphens instead of underscores.
+        """
+        return self.project_name.replace('_', '-')
 
     @property
     def terraform_backend_bucket_name(self) -> str:
@@ -76,7 +85,7 @@ class AppProps(BaseModel):
 
         :return: The name of the Terraform backend bucket.
         """
-        return f"{self.project_name}-terraform-state-{self.region}"
+        return f"{self.project_name_hyphens}-terraform-state-{self.region}"
 
     @property
     def terraform_backend_lock_table_name(self) -> str:
@@ -85,4 +94,4 @@ class AppProps(BaseModel):
 
         :return: The name of the Terraform backend lock table.
         """
-        return f"{self.project_name}-terraform-state-lock-{self.region}"
+        return f"{self.project_name_hyphens}-terraform-state-lock-{self.region}"

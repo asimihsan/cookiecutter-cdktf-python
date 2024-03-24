@@ -13,8 +13,8 @@ main = "{{ cookiecutter.cdktf_module_name }}.main:main"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-cdktf = "^0.19.2"
-cdktf-cdktf-provider-aws = "^18.2.0"
+cdktf = "^0.20.5"
+cdktf-cdktf-provider-aws = "^19.11.0"
 pydantic = "^2.5.3"
 boto3 = "^1.34.11"
 

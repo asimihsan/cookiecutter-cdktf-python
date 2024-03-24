@@ -4,6 +4,7 @@ from cdktf import TerraformStack
 from cdktf_cdktf_provider_aws.dynamodb_table import DynamodbTable
 from cdktf_cdktf_provider_aws.provider import AwsProvider, AwsProviderDefaultTags
 from cdktf_cdktf_provider_aws.s3_bucket import S3Bucket
+from cdktf_cdktf_provider_aws.s3_bucket_acl import S3BucketAcl
 from constructs import Construct
 from pydantic import BaseModel
 
@@ -36,4 +37,10 @@ class TerraformBackendStack(TerraformStack):
         )
 
         self.state_bucket_name = f"{props.project_name}-terraform-state-{props.region}"
-        S3Bucket(self, "terraform_state_bucket", bucket=self.state_bucket_name, acl="private")
+        bucket = S3Bucket(self, "terraform_state_bucket", bucket=self.state_bucket_name)
+        S3BucketAcl(
+            self,
+            "terraform-state-bucket-acl",
+            bucket=bucket.id,
+            acl="private",
+        )        

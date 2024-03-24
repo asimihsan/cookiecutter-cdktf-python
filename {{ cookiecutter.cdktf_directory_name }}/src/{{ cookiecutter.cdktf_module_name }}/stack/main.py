@@ -1,4 +1,5 @@
 from cdktf_cdktf_provider_aws.s3_bucket import S3Bucket
+from cdktf_cdktf_provider_aws.s3_bucket_acl import S3BucketAcl
 from constructs import Construct
 
 from {{ cookiecutter.cdktf_module_name }}.construct.lambda_construct import LambdaConstruct, LambdaConstructProps
@@ -16,10 +17,16 @@ class MyStack(BaseStack):
     def __init__(self, scope: Construct, id: str, props: MyStackProps):
         super().__init__(scope, id, props)
 
-        S3Bucket(
+        bucket = S3Bucket(
             self,
             "mybucket",
             bucket_prefix=f"{props.project_name}-bucket-{props.region}",
+        )
+
+        S3BucketAcl(
+            self,
+            "mybucket-acl",
+            bucket=bucket.id,
             acl="private",
         )
 
